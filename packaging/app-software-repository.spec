@@ -1,7 +1,7 @@
 
 Name: app-software-repository
 Epoch: 1
-Version: 1.0.10
+Version: 1.1.0
 Release: 1%{dist}
 Summary: Software Repository
 License: GPLv3
@@ -15,7 +15,7 @@ Requires: app-base
 A list of respositories available to the server.  A software repository is a storage location where updates and new packages can be downloaded and installed on the server.  Apps available in the Marketplace are dependant on which repositories are enabled.
 
 %package core
-Summary: Software Repository - APIs and install
+Summary: Software Repository - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
