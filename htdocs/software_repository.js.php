@@ -54,7 +54,12 @@ $(document).ready(function() {
 });
 
 function get_list() {
-    $('#list').append('<tr><td valign=\'top\' colspan=\'5\' class=\'dataTables_empty\'><div class=\'theme-loading-small\'>Loading...</div></td></tr>');
+    // Removes first row
+    $('#list tbody').empty();
+    $('#list').append(
+        '<tr><td valign=\'top\' colspan=\'5\' class=\'dataTables_empty\' style=\'padding: 7px 0px;\'>' +
+        '<div class=\'theme-loading-small\'>" . lang('base_loading...') . "</div></td></tr>'
+    );
     $.ajax({
         type: 'POST',
         dataType: 'json',
@@ -73,7 +78,7 @@ function get_list() {
                             json.list[index].name,
                             (json.list[index].enabled ? '<div style=\'margin-left: 20;\' class=\'theme-field-checkbox-enabled\'></div>' : ''),
                             json.list[index].packages,
-                            toggle_button(json.list[index].id, (json.list[index].enabled ? 0 : 1))
+                            (json.list[index].id.lastIndexOf('private-', 0) === 0) ? '' : toggle_button(json.list[index].id, (json.list[index].enabled ? 0 : 1))
                         ]);
                     } else {
                         table_list.fnAddData([
