@@ -64,7 +64,7 @@ function get_list() {
         type: 'POST',
         dataType: 'json',
         url: '/app/software_repository/get_repo_list',
-        data: '',
+        data: 'ci_csrf_token=' + $.cookie('ci_csrf_token'),
         success: function(json) {
             if (json.code < 0) {
                 $('#software_repository_warning_box').show();
