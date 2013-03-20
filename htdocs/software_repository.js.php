@@ -61,17 +61,22 @@ function get_list() {
         '<div class=\'theme-loading-small\'>" . lang('base_loading...') . "</div></td></tr>'
     );
     $.ajax({
-        type: 'POST',
+        type: 'GET',
         dataType: 'json',
         url: '/app/software_repository/get_repo_list',
-        data: 'ci_csrf_token=' + $.cookie('ci_csrf_token'),
+        data: '',
         success: function(json) {
+            var test_repo_enabled = false;
+            var test_repos = [ 'clearos-dev', 'clearos-test', 'clearos-updates-testing', 'clearos-developer', 'clearos-epel' ];
             if (json.code < 0) {
                 $('#software_repository_warning_box').show();
                 $('#software_repository_warning').html(json.errmsg);
             } else {
                 table_list.fnClearTable();
                 for (var index = 0 ; index < json.list.length; index++) {
+                    if ($.inArray(json.list[index].id, test_repos) >= 0 && json.list[index].enabled)
+                        test_repo_enabled = true;
+                    
                     if ($('#report_type').val() == 'detailed') {
                         table_list.fnAddData([
                             json.list[index].id,
@@ -90,6 +95,8 @@ function get_list() {
                 }
 
                 table_list.fnAdjustColumnSizing();
+                if (test_repo_enabled)
+                    $('#software_repository_warning_box').show();
             }
         },
         error: function(xhr, text, err) {

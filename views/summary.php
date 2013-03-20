@@ -40,13 +40,11 @@ $this->lang->load('software_repository');
 // Warning box
 ///////////////////////////////////////////////////////////////////////////////
 
-echo "<div id='software_repository_warning_box' style='display: none'>";
-
+echo "<div id='software_repository_warning_box' class='theme-hidden'>";
 echo infobox_warning(
     lang('base_warning'),
-    "<div id='software_repository_warning'></div>"
+    "<div id='software_repository_warning'>" . lang('software_repository_warning') . "</div>"
 );
-
 echo "</div>";
 
 if ($highlight)

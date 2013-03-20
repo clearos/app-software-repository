@@ -10,5 +10,6 @@ $lang['software_repository_loading'] = 'Loading repository list';
 $lang['software_repository_enabled'] = 'Enabled';
 $lang['software_repository_detailed'] = 'Detailed View';
 $lang['software_repository_simple'] = 'Simple View';
+$lang['software_repository_warning'] = 'You have enabled one or more repositories that may cause system stability/useability issues.  These repos are intended for developers, beta testers and advanced users only.  Please refer to the online documentation for more detailed information.';
 $lang['software_repository_add_note'] = 'The Marketplace app requires the following repository to be enabled';
 $lang['software_repository_app_tooltip'] = 'Enabling and/or disabling repositories can have an adverse affect on the stability of the system.  Making changes to the default settings is recommended for advanced users only.';
