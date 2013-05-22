@@ -3,9 +3,9 @@
 /**
  * Javascript helper for Software_Repository.
  *
- * @category   Apps
- * @package    Software_Repository
- * @subpackage Javascript
+ * @category   apps
+ * @package    software-repository
+ * @subpackage javascript
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2003-2011 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later

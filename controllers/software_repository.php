@@ -3,9 +3,9 @@
 /**
  * Software repository controller.
  *
- * @category   Apps
- * @package    Software_Repository
- * @subpackage Controllers
+ * @category   apps
+ * @package    software-repository
+ * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2011-2012 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
@@ -40,9 +40,9 @@
 /**
  * Software respository controller.
  *
- * @category   Apps
- * @package    Software_Repository
- * @subpackage Controllers
+ * @category   apps
+ * @package    software-repository
+ * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2011-2012 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
