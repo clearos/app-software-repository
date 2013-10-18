@@ -1,6 +1,6 @@
 <?php
 
-$lang['software_repository_app_description'] = 'A list of respositories available to the server.  A software repository is a storage location where updates and new packages can be downloaded and installed on the server.  Apps available in the Marketplace are dependant on which repositories are enabled.';
+$lang['software_repository_app_description'] = 'A list of repositories available to the server.  A software repository is a storage location where updates and new packages can be downloaded and installed on the server.  Apps available in the Marketplace are dependant on which repositories are enabled.';
 $lang['software_repository_app_name'] = 'Software Repository';
 $lang['software_repository_number_of_packages'] = 'Packages';
 $lang['software_repository_name'] = 'Name';
