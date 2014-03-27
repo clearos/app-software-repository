@@ -73,7 +73,7 @@ class Software_Repository extends ClearOS_Controller
             $data['highlight'] = $highlight;
 
         if ($report_type === 'detailed')
-            $options['type'] = MY_Page::TYPE_REPORT;
+            $options['type'] = MY_Page::TYPE_WIDE_CONFIGURATION;
         else
             $options = array();
 
