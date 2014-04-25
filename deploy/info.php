@@ -29,3 +29,7 @@ $app['subcategory'] = lang('base_subcategory_operating_system');
 $app['delete_dependency'] = array(
     'app-software-repository-core'
 );
+
+$app['core_requires'] = array(
+    'app-base-core >= 1:1.6.0',
+);

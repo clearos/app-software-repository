@@ -12,16 +12,17 @@ Requires: %{name}-core = 1:%{version}-%{release}
 Requires: app-base
 
 %description
-A list of respositories available to the server.  A software repository is a storage location where updates and new packages can be downloaded and installed on the server.  Apps available in the Marketplace are dependant on which repositories are enabled.
+The Software Repository app prvoides a list of repositories available to the server.  Apps available in the Marketplace are dependant on which repositories are enabled.
 
 %package core
 Summary: Software Repository - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
+Requires: app-base-core >= 1:1.6.0
 
 %description core
-A list of respositories available to the server.  A software repository is a storage location where updates and new packages can be downloaded and installed on the server.  Apps available in the Marketplace are dependant on which repositories are enabled.
+The Software Repository app prvoides a list of repositories available to the server.  Apps available in the Marketplace are dependant on which repositories are enabled.
 
 This package provides the core API and libraries.
 
@@ -70,8 +71,6 @@ exit 0
 %files core
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/software_repository/packaging
-%exclude /usr/clearos/apps/software_repository/tests
 %dir /usr/clearos/apps/software_repository
 /usr/clearos/apps/software_repository/deploy
 /usr/clearos/apps/software_repository/language
-/usr/clearos/apps/software_repository/libraries

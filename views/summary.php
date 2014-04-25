@@ -50,22 +50,23 @@ echo "</div>";
 if ($highlight)
     echo infobox_highlight(
         lang('base_information'),
-        lang('software_repository_add_note') . ": <b>" . $highlight . "</b>."
+        lang('software_repository_add_note:') . " <b>" . $highlight . "</b>."
     );
 
 ///////////////////////////////////////////////////////////////////////////////
 // Buttons
 ///////////////////////////////////////////////////////////////////////////////
 
-$link = '/app/software_repository/index/detailed';
-if ($report_type === 'detailed')
+if ($report_type === 'detailed') {
     $link = '/app/software_repository';
+    $anchor_title = lang('base_simple_view');
+}  else {
+    $link = '/app/software_repository/index/detailed';
+    $anchor_title = lang('base_detailed_view');
+}
 
 $buttons = array(
-    anchor_custom(
-        $link,
-        ($report_type === 'detailed' ? lang('software_repository_simple') : lang('software_repository_detailed')), 'high'
-    )
+    anchor_custom($link, $anchor_title, 'high')
 );
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -76,14 +77,14 @@ if ($report_type === 'detailed')
     $headers = array(
         lang('software_repository_name'),
         lang('base_description'),
-        lang('software_repository_enabled'),
+        lang('base_enabled'),
         lang('software_repository_number_of_packages')
     );
 else
     $headers = array(
         lang('software_repository_name'),
         lang('base_description'),
-        lang('software_repository_enabled')
+        lang('base_enabled')
     );
 
 ///////////////////////////////////////////////////////////////////////////////
