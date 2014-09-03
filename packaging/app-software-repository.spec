@@ -1,7 +1,7 @@
 
 Name: app-software-repository
 Epoch: 1
-Version: 1.6.0
+Version: 1.6.5
 Release: 1%{dist}
 Summary: Software Repository
 License: GPLv3
@@ -12,7 +12,7 @@ Requires: %{name}-core = 1:%{version}-%{release}
 Requires: app-base
 
 %description
-The Software Repository app prvoides a list of repositories available to the server.  Apps available in the Marketplace are dependant on which repositories are enabled.
+The Software Repository app provides a list of repositories available to the server.  Apps available in the Marketplace are dependent on which repositories are enabled.
 
 %package core
 Summary: Software Repository - Core
@@ -22,7 +22,7 @@ Requires: app-base-core
 Requires: app-base-core >= 1:1.6.0
 
 %description core
-The Software Repository app prvoides a list of repositories available to the server.  Apps available in the Marketplace are dependant on which repositories are enabled.
+The Software Repository app provides a list of repositories available to the server.  Apps available in the Marketplace are dependent on which repositories are enabled.
 
 This package provides the core API and libraries.
 
