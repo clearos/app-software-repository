@@ -98,11 +98,13 @@ class Software_Repository extends ClearOS_Controller
 
         try {
             $this->yum->set_enabled($name, $enabled);
+            redirect('/software_repository');
+            return;
         } catch (Exception $e) {
             $this->page->set_message(clearos_exception_code($e), 'info');
         }
 
-        $this->index('detailed');
+        $this->index('simple');
     }
 
     /**

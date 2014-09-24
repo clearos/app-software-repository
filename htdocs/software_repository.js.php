@@ -56,10 +56,8 @@ $(document).ready(function() {
 function get_list() {
     // Removes first row
     $('#list tbody').empty();
-    $('#list').append(
-        '<tr><td valign=\'top\' colspan=\'5\' class=\'dataTables_empty\' style=\'padding: 7px 0px;\'>' +
-        '<div class=\'theme-loading-small\'>" . lang('base_loading...') . "</div></td></tr>'
-    );
+    var table_list = get_table_list();
+
     $.ajax({
         type: 'GET',
         dataType: 'json',
@@ -88,8 +86,9 @@ function get_list() {
                     } else {
                         table_list.fnAddData([
                             json.list[index].id,
-                            json.list[index].name,
-                            (json.list[index].enabled ? '<div style=\'margin-left: 20;\' class=\'theme-field-checkbox-enabled\'></div>' : '')
+                            (json.list[index].enabled ? '<i class=\'fa fa-check\'></i>' : ''),
+                            json.list[index].packages,
+                            (json.list[index].id.lastIndexOf('private-', 0) === 0) ? '' : toggle_button(json.list[index].id, (json.list[index].enabled ? 0 : 1))
                         ]);
                     }
                 }
@@ -108,9 +107,7 @@ function get_list() {
 
 function toggle_button(basename, action) {
     
-    return '<div class=\'theme-button-set ui-button-set\'>' +
-        '<a href=\'/app/software_repository/update/' + basename + '/' + action + '\' id=\'' + basename + '\' class=\'acknowledge theme-button-set-first theme-button-set-last theme-anchor theme-anchor-edit theme-anchor-important\'>" . lang('base_toggle') . "</a>'
-        '</div>';
+    return '<a href=\'/app/software_repository/update/' + basename + '/' + action + '\' id=\'' + basename + '\' class=\'btn btn-primary btn-sm\'>" . lang('base_toggle') . "</a>';
 }
 
 

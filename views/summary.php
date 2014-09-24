@@ -65,9 +65,9 @@ if ($report_type === 'detailed') {
     $anchor_title = lang('base_detailed_view');
 }
 
-$buttons = array(
-    anchor_custom($link, $anchor_title, 'high')
-);
+//$buttons = array(
+//    anchor_custom($link, $anchor_title, 'high')
+//);
 
 ///////////////////////////////////////////////////////////////////////////////
 // Headers
@@ -83,8 +83,8 @@ if ($report_type === 'detailed')
 else
     $headers = array(
         lang('software_repository_name'),
-        lang('base_description'),
-        lang('base_enabled')
+        lang('base_enabled'),
+        lang('software_repository_number_of_packages')
     );
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -97,11 +97,16 @@ else
 // List table
 ///////////////////////////////////////////////////////////////////////////////
 
+$options = array(
+    'id' => 'list',
+    //'no_action' => ($report_type === 'detailed' ? FALSE : TRUE),
+    'empty_table_message' => loading('normal', lang('base_loading...'))
+);
 echo summary_table(
     lang('software_repository_repo_list'),
     $buttons,
     $headers,
     NULL,
-    array('id' => 'list', 'no_action' => ($report_type === 'detailed' ? FALSE : TRUE))
+    $options
 );
 echo "<input type='hidden' name='report_type' id='report_type' value='$report_type'>";
