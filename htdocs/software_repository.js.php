@@ -71,24 +71,24 @@ function get_list() {
                 $('#software_repository_warning').html(json.errmsg);
             } else {
                 table_list.fnClearTable();
-                for (var index = 0 ; index < json.list.length; index++) {
-                    if ($.inArray(json.list[index].id, test_repos) >= 0 && json.list[index].enabled)
+                for (var id in json.list) {
+                    if ($.inArray(id, test_repos) >= 0 && json.list[id].enabled)
                         test_repo_enabled = true;
                     
                     if ($('#report_type').val() == 'detailed') {
                         table_list.fnAddData([
-                            json.list[index].id,
-                            json.list[index].name,
-                            (json.list[index].enabled ? '<div style=\'margin-left: 20;\' class=\'theme-field-checkbox-enabled\'></div>' : ''),
-                            json.list[index].packages,
-                            (json.list[index].id.lastIndexOf('private-', 0) === 0) ? '' : toggle_button(json.list[index].id, (json.list[index].enabled ? 0 : 1))
+                            id,
+                            json.list[id].name,
+                            (json.list[id].enabled ? '<div style=\'margin-left: 20;\' class=\'theme-field-checkbox-enabled\'></div>' : ''),
+                            json.list[id].packages,
+                            (json.list[id].id.lastIndexOf('private-', 0) === 0) ? '' : toggle_button(id, (json.list[id].enabled ? 0 : 1))
                         ]);
                     } else {
                         table_list.fnAddData([
-                            json.list[index].id,
-                            (json.list[index].enabled ? '<i class=\'fa fa-check\'></i>' : ''),
-                            json.list[index].packages,
-                            (json.list[index].id.lastIndexOf('private-', 0) === 0) ? '' : toggle_button(json.list[index].id, (json.list[index].enabled ? 0 : 1))
+                            id,
+                            (json.list[id].enabled ? '<i class=\'fa fa-check\'></i>' : ''),
+                            json.list[id].packages,
+                            (id.lastIndexOf('private-', 0) === 0) ? '' : toggle_button(id, (json.list[id].enabled ? 0 : 1))
                         ]);
                     }
                 }

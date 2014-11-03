@@ -134,7 +134,7 @@ class Software_Repository extends ClearOS_Controller
                     throw new Yum_Busy_Exception();
             }
 
-            echo json_encode(Array('code' => 0, 'list' => $this->yum->get_repo_list()));
+            echo json_encode(Array('code' => 0, 'list' => $this->yum->get_live_repo_list()));
 
         } catch (Yum_Busy_Exception $e) {
             echo json_encode(Array('code' => clearos_exception_code($e), 'errmsg' => lang('software_repository_busy')));
