@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'software_repository';
-$app['version'] = '1.6.5';
+$app['version'] = '2.0.14';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -19,8 +19,8 @@ $app['tooltip'] = lang('software_repository_app_tooltip');
 /////////////////////////////////////////////////////////////////////////////
 
 $app['name'] = lang('software_repository_app_name');
-$app['category'] = lang('base_category_system');
-$app['subcategory'] = lang('base_subcategory_operating_system');
+$app['category'] = lang('base_category_cloud');
+$app['subcategory'] = lang('base_subcategory_updates');
 
 /////////////////////////////////////////////////////////////////////////////
 // Packaging
