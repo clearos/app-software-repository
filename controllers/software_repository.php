@@ -57,7 +57,7 @@ class Software_Repository extends ClearOS_Controller
      * @return view
      */
 
-    function index($report_type = 'simple', $highlight = NULL)
+    function index()
     {
         // Load libraries
         //---------------
@@ -68,14 +68,7 @@ class Software_Repository extends ClearOS_Controller
         // Load view data
         //---------------
 
-        $data['report_type'] = $report_type;
-        if ($highlight != NULL)
-            $data['highlight'] = $highlight;
-
-        if ($report_type === 'detailed')
-            $options['type'] = MY_Page::TYPE_WIDE_CONFIGURATION;
-        else
-            $options = array();
+        $options = array();
 
         // Load views
         //-----------

@@ -57,13 +57,8 @@ if ($highlight)
 // Buttons
 ///////////////////////////////////////////////////////////////////////////////
 
-if ($report_type === 'detailed') {
-    $link = '/app/software_repository';
-    $anchor_title = lang('base_simple_view');
-}  else {
-    $link = '/app/software_repository/index/detailed';
-    $anchor_title = lang('base_detailed_view');
-}
+$link = '/app/software_repository/index/detailed';
+$anchor_title = lang('base_detailed_view');
 
 //$buttons = array(
 //    anchor_custom($link, $anchor_title, 'high')
@@ -73,19 +68,12 @@ if ($report_type === 'detailed') {
 // Headers
 ///////////////////////////////////////////////////////////////////////////////
 
-if ($report_type === 'detailed')
-    $headers = array(
-        lang('software_repository_name'),
-        lang('base_description'),
-        lang('base_enabled'),
-        lang('software_repository_number_of_packages')
-    );
-else
-    $headers = array(
-        lang('software_repository_name'),
-        lang('base_enabled'),
-        lang('software_repository_number_of_packages')
-    );
+$headers = array(
+    lang('software_repository_name'),
+    lang('base_description'),
+    lang('base_enabled'),
+    lang('software_repository_number_of_packages')
+);
 
 ///////////////////////////////////////////////////////////////////////////////
 // Items
@@ -99,7 +87,7 @@ else
 
 $options = array(
     'id' => 'list',
-    //'no_action' => ($report_type === 'detailed' ? FALSE : TRUE),
+    'responsive' => array(1 => 'none'),
     'empty_table_message' => loading('normal', lang('base_loading...'))
 );
 echo summary_table(
@@ -109,4 +97,3 @@ echo summary_table(
     NULL,
     $options
 );
-echo "<input type='hidden' name='report_type' id='report_type' value='$report_type'>";
