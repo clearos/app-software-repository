@@ -39,11 +39,13 @@ require_once $bootstrap . '/bootstrap.php';
 clearos_load_language('software_repository');
 clearos_load_language('base');
 
-// TODO: Merge dialog into theme
-
 header('Content-Type: application/x-javascript');
 
-echo "
+?>
+var lang_error = '<?php echo lang('base_error'); ?>';
+var lang_warning = '<?php echo lang('base_warning'); ?>';
+var lang_toggle = '<?php echo lang('base_toggle'); ?>';
+var lang_cli_only = '<?php echo lang('software_repository_cli_only'); ?>';
 
 $(document).ready(function() {
     // Default fields to hide
@@ -65,7 +67,20 @@ function get_list() {
         data: '',
         success: function(json) {
             var test_repo_enabled = false;
-            var test_repos = [ 'clearos-dev', 'clearos-test', 'clearos-updates-testing', 'clearos-developer', 'clearos-epel' ];
+            // This list should not be in JS - TODO
+            var test_repos = [
+                'clearos-dev', 'clearos-test', 'clearos-updates-testing', 'clearos-developer', 'clearos-zfs',
+                'clearos-zfs-testing', 'clearos-paid-testing', 'clearos-infra-testing', 'clearos-epel-verified-testing',
+                'clearos-epel-testing', 'clearos-contribs-testing'
+            ];
+            var dynamic_repos = [
+                'clearos-verified', 'clearos-centos-verified', 'clearos-centos-verified-testing', 'clearos-epel-verified',
+                'clearos-epel-verified-testing', 'clearos-paid', 'clearos-paid-testing', 'clearos-contribs-paid',
+                'clearos-contribs-paid-testing'
+            ];
+            var cli_only_repos = [
+                'clearos-updates-testing', 'clearos-zfs-testing', 'clearos-epel-testing'
+            ];
             if (json.code < 0) {
                 $('#software_repository_warning_box').show();
                 $('#software_repository_warning').html(json.errmsg);
@@ -75,12 +90,20 @@ function get_list() {
                     if ($.inArray(id, test_repos) >= 0 && json.list[id].enabled)
                         test_repo_enabled = true;
                     
+                    var options = {id: id};
+                    var action = clearos_anchor('/app/software_repository/update/' + id + '/' + (json.list[id].enabled ? 0 : 1), lang_toggle, options);
+                    if (id.lastIndexOf('private-', 0) === 0)
+                        action = '';
+                    else if ($.inArray(id, dynamic_repos) >= 0)
+                        action = '';
+                    else if ($.inArray(id, cli_only_repos) >= 0)
+                        action = lang_cli_only;
                     table_list.fnAddData([
                         id,
                         json.list[id].name,
                         (json.list[id].enabled ? clearos_enabled() : clearos_disabled()),
                         json.list[id].packages,
-                        (id.lastIndexOf('private-', 0) === 0) ? '' : toggle_button(id, (json.list[id].enabled ? 0 : 1))
+                        action
                     ]);
                 }
 
@@ -95,13 +118,3 @@ function get_list() {
         }
     });
 }
-
-function toggle_button(basename, action) {
-    
-    return '<a href=\'/app/software_repository/update/' + basename + '/' + action + '\' id=\'' + basename + '\' class=\'btn btn-primary btn-sm\'>" . lang('base_toggle') . "</a>';
-}
-
-
-";
-
-// vim: syntax=php ts=4

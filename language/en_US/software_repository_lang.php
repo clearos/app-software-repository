@@ -5,6 +5,7 @@ $lang['software_repository_app_name'] = 'Software Repository';
 $lang['software_repository_number_of_packages'] = 'Packages';
 $lang['software_repository_name'] = 'Name';
 $lang['software_repository_busy'] = 'Software manager busy...';
+$lang['software_repository_cli_only'] = 'CLI Only';
 $lang['software_repository_repo_list'] = 'Repository List';
 $lang['software_repository_warning'] = 'You have enabled one or more repositories that may cause system stability/usability issues.  These repos are intended for developers, beta testers and advanced users only.  Please refer to the online documentation for more detailed information.';
 $lang['software_repository_add_note:'] = 'The Marketplace app requires the following repository to be enabled:';
