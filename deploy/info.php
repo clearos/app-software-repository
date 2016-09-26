@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'software_repository';
-$app['version'] = '2.1.7';
+$app['version'] = '2.1.8';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -31,5 +31,21 @@ $app['delete_dependency'] = array(
 );
 
 $app['core_requires'] = array(
-    'app-base-core >= 1:1.6.0',
+    'app-base-core >= 1:2.2.14',
+);
+
+$app['core_file_manifest'] = array(
+    'app-software-repository.cron' => array(
+        'target' => '/etc/cron.d/app-software-repository',
+        'config' => TRUE,
+        'config_params' => 'noreplace',
+    ),
+);
+
+/////////////////////////////////////////////////////////////////////////////
+// App Events
+/////////////////////////////////////////////////////////////////////////////
+
+$app['event_types'] = array(
+    'SOFTWARE_REPOSITORY_CONFIG_WARNING',
 );

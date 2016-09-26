@@ -1,15 +1,16 @@
+#!/usr/clearos/sandbox/usr/bin/php
 <?php
 
 /**
- * Software repository overview.
+ * Software Repository
  *
  * @category   apps
- * @package    software-repository
- * @subpackage views
+ * @package    software_repository
+ * @subpackage scripts
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2011-2016 ClearFoundation
+ * @copyright  2016 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
- * @link       http://www.clearcenter.com/support/documentation/clearos/software_repository/
+ * @link       http://www.clearfoundation.com/docs/developer/apps/software_repository/
  */
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -25,78 +26,55 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.  
-//  
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 ///////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
-// Load dependencies
+// N A M E S P A C E
 ///////////////////////////////////////////////////////////////////////////////
 
-$this->lang->load('base');
-$this->lang->load('software_repository');
+namespace clearos\apps\software_repository;
 
 ///////////////////////////////////////////////////////////////////////////////
-// Warning box
+// B O O T S T R A P
 ///////////////////////////////////////////////////////////////////////////////
 
-if (count($warnings))
-    echo infobox_warning(
-        lang('base_warning'),
-        "<div>" . lang('software_repository_warning') . "</div>" .
-        "<br />" .
-        "<ul>" .
-        "<li>" . implode("</li><li>", $warnings) . "</li>" .
-        "</ul>"
-    );
-
-if ($highlight)
-    echo infobox_highlight(
-        lang('base_information'),
-        lang('software_repository_add_note:') . " <b>" . $highlight . "</b>."
-    );
+$bootstrap = getenv('CLEAROS_BOOTSTRAP') ? getenv('CLEAROS_BOOTSTRAP') : '/usr/clearos/framework/shared';
+require_once $bootstrap . '/bootstrap.php';
 
 ///////////////////////////////////////////////////////////////////////////////
-// Buttons
+// T R A N S L A T I O N S
 ///////////////////////////////////////////////////////////////////////////////
 
-$link = '/app/software_repository/index/detailed';
-$anchor_title = lang('base_detailed_view');
-
-//$buttons = array(
-//    anchor_custom($link, $anchor_title, 'high')
-//);
+clearos_load_language('software_repository');
 
 ///////////////////////////////////////////////////////////////////////////////
-// Headers
+// D E P E N D E N C I E S
 ///////////////////////////////////////////////////////////////////////////////
 
-$headers = array(
-    lang('software_repository_name'),
-    lang('base_description'),
-    lang('base_enabled'),
-    lang('software_repository_number_of_packages')
-);
+// Classes
+//--------
+
+use \clearos\apps\software_repository\Software_Repository as Software_Repository;
+
+clearos_load_library('software_repository/Software_Repository');
+
+// Exceptions
+//-----------
+
+use \Exception as Exception;
 
 ///////////////////////////////////////////////////////////////////////////////
-// Items
+// M A I N
 ///////////////////////////////////////////////////////////////////////////////
 
-// Done in Ajax/JS
+$software_repository = new Software_Repository();
 
-///////////////////////////////////////////////////////////////////////////////
-// List table
-///////////////////////////////////////////////////////////////////////////////
+try {
+    $software_repository->get_warnings();
+} catch (Exception $e) {
+    echo clearos_exception_message($e) . "\n";
+}
 
-$options = array(
-    'id' => 'list',
-    'responsive' => array(1 => 'none'),
-    'empty_table_message' => loading('normal', lang('base_loading...'))
-);
-echo summary_table(
-    lang('software_repository_repo_list'),
-    $buttons,
-    $headers,
-    NULL,
-    $options
-);
+// vim: syntax=php ts=4

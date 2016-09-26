@@ -1,7 +1,7 @@
 
 Name: app-software-repository
 Epoch: 1
-Version: 2.1.7
+Version: 2.1.8
 Release: 1%{dist}
 Summary: Software Repository
 License: GPLv3
@@ -19,7 +19,8 @@ Summary: Software Repository - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
-Requires: app-base-core >= 1:1.6.0
+Requires: app-base-core >= 1:2.2.14
+Requires: csplugin-events
 
 %description core
 The Software Repository app provides a list of repositories available to the server.  Apps available in the Marketplace are dependent on which repositories are enabled.
@@ -34,6 +35,7 @@ This package provides the core API and libraries.
 mkdir -p -m 755 %{buildroot}/usr/clearos/apps/software_repository
 cp -r * %{buildroot}/usr/clearos/apps/software_repository/
 
+install -D -m 0644 packaging/app-software-repository.cron %{buildroot}/etc/cron.d/app-software-repository
 
 %post
 logger -p local6.notice -t installer 'app-software-repository - installing'
@@ -47,6 +49,12 @@ fi
 
 [ -x /usr/clearos/apps/software_repository/deploy/upgrade ] && /usr/clearos/apps/software_repository/deploy/upgrade
 
+if [ -x /usr/bin/eventsctl -a -S /var/lib/csplugin-events/eventsctl.socket ]; then
+    /usr/bin/eventsctl -R --type SOFTWARE_REPOSITORY_CONFIG_WARNING --basename software_repository
+else
+    logger -p local6.notice -t installer 'app-software-repository - events system not running, unable to register custom types.'
+fi
+
 exit 0
 
 %preun
@@ -58,6 +66,12 @@ fi
 if [ $1 -eq 0 ]; then
     logger -p local6.notice -t installer 'app-software-repository-core - uninstalling'
     [ -x /usr/clearos/apps/software_repository/deploy/uninstall ] && /usr/clearos/apps/software_repository/deploy/uninstall
+fi
+
+if [ -x /usr/bin/eventsctl -a -S /var/lib/csplugin-events/eventsctl.socket ]; then
+    /usr/bin/eventsctl -D --type SOFTWARE_REPOSITORY_CONFIG_WARNING
+else
+    logger -p local6.notice -t installer 'app-software-repository - events system not running, unable to unregister custom types.'
 fi
 
 exit 0
@@ -74,3 +88,5 @@ exit 0
 %dir /usr/clearos/apps/software_repository
 /usr/clearos/apps/software_repository/deploy
 /usr/clearos/apps/software_repository/language
+/usr/clearos/apps/software_repository/libraries
+%config(noreplace) /etc/cron.d/app-software-repository

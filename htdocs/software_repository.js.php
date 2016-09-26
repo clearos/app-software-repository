@@ -66,13 +66,7 @@ function get_list() {
         url: '/app/software_repository/get_repo_list',
         data: '',
         success: function(json) {
-            var test_repo_enabled = false;
             // This list should not be in JS - TODO
-            var test_repos = [
-                'clearos-dev', 'clearos-test', 'clearos-updates-testing', 'clearos-developer', 'clearos-zfs',
-                'clearos-zfs-testing', 'clearos-paid-testing', 'clearos-infra-testing', 'clearos-epel-verified-testing',
-                'clearos-epel-testing', 'clearos-contribs-testing'
-            ];
             var dynamic_repos = [
                 'clearos-verified', 'clearos-centos-verified', 'clearos-centos-verified-testing', 'clearos-epel-verified',
                 'clearos-epel-verified-testing', 'clearos-paid', 'clearos-paid-testing', 'clearos-contribs-paid',
@@ -87,9 +81,6 @@ function get_list() {
             } else {
                 table_list.fnClearTable();
                 for (var id in json.list) {
-                    if ($.inArray(id, test_repos) >= 0 && json.list[id].enabled)
-                        test_repo_enabled = true;
-                    
                     var options = {id: id};
                     var action = clearos_anchor('/app/software_repository/update/' + id + '/' + (json.list[id].enabled ? 0 : 1), lang_toggle, options);
                     if (id.lastIndexOf('private-', 0) === 0)
@@ -108,8 +99,6 @@ function get_list() {
                 }
 
                 table_list.fnAdjustColumnSizing();
-                if (test_repo_enabled)
-                    $('#software_repository_warning_box').show();
             }
         },
         error: function(xhr, text, err) {

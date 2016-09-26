@@ -7,7 +7,7 @@
  * @package    software-repository
  * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2011-2012 ClearFoundation
+ * @copyright  2011-2016 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/software_repository/
  */
@@ -44,7 +44,7 @@
  * @package    software-repository
  * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2011-2012 ClearFoundation
+ * @copyright  2011-2016 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/software_repository/
  */
@@ -63,12 +63,14 @@ class Software_Repository extends ClearOS_Controller
         //---------------
 
         $this->lang->load('software_repository');
-        $this->load->library('base/Yum');
+        $this->load->library('software_repository/Software_Repository');
 
         // Load view data
         //---------------
 
         $options = array();
+        $data = array();
+        $data['warnings'] = $this->software_repository->get_warnings($this->session->flashdata('repo_change') ? FALSE : TRUE);
 
         // Load views
         //-----------
@@ -91,6 +93,7 @@ class Software_Repository extends ClearOS_Controller
 
         try {
             $this->yum->set_enabled($name, $enabled);
+            $this->session->set_flashdata('repo_change', TRUE);
             redirect('/software_repository');
             return;
         } catch (Exception $e) {
