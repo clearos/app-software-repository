@@ -210,7 +210,7 @@ class Software_Repository extends Engine
             $warnings[self::WARN_CENTOS_UPDATES_ENABLE] = lang('software_repository_warn_centos_updates_enable');
 
         if (count($warnings) && !$disable_event)
-            Event_Utils::add_event(lang('software_repository_updates_warning_event'), 'WARN', 'SOFTWARE_REPOSITORY_CONFIG_WARNING', 'software_updates', FALSE);
+            Event_Utils::add_event(lang('software_repository_updates_warning_event'), 'WARN', 'SOFTWARE_REPOSITORY_CONFIG_WARNING', 'software_repository', FALSE);
         else if (count($warnings) == 0)
             Event_Utils::resolve_event('SOFTWARE_REPOSITORY_CONFIG_WARNING');
 
