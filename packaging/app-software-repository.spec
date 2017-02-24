@@ -1,7 +1,7 @@
 
 Name: app-software-repository
 Epoch: 1
-Version: 2.3.1
+Version: 2.3.20
 Release: 1%{dist}
 Summary: Software Repository
 License: GPLv3
@@ -85,6 +85,7 @@ exit 0
 %files core
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/software_repository/packaging
+%exclude /usr/clearos/apps/software_repository/unify.json
 %dir /usr/clearos/apps/software_repository
 /usr/clearos/apps/software_repository/deploy
 /usr/clearos/apps/software_repository/language
