@@ -18,6 +18,6 @@ $lang['software_repository_warn_epel_is_enabled'] = 'The EPEL (clearos-epel) rep
 $lang['software_repository_warn_fast_updates_enable'] = 'Consider enabling "clearos-fast-updates" - this repository is used to quickly push out updates deemed critical to the security of your system.';
 $lang['software_repository_warn_test_repo'] = 'Consider disabling "%s" repository.  It is intended for developers, beta testers and advanced users only.';
 $lang['software_repository_warn_updates_disable'] = 'Consider disabling "clearos-updates" repository - this server has access to verified software updates through a paid service or first 30 days of a Community install.';
-$lang['software_repository_warn_updates_enable'] = 'Consider enabling "clearos-updates" repository...it provides software updates to fix bugs, add features and in some cases, patch critical security vunerabilities.';
+$lang['software_repository_warn_updates_enable'] = 'Consider enabling "clearos-updates" repository... it provides software updates to fix bugs, add features and in some cases, patch critical security vunerabilities.';
 $lang['software_repository_warning'] = 'The following recommendations/warnings have been identified:';
 $lang['software_repository_updates_warning_event'] = 'Software repository configuration warning(s)';
