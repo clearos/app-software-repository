@@ -193,9 +193,10 @@ class Software_Repository extends Engine
         if (!isset($clearos_updates) && !isset($verified_clearos_updates))
             $warnings[self::WARN_UPDATES_ENABLE] = lang('software_repository_warn_updates_enable');
 
+        // ClearOS EPEL is required, some apps depend on it
         // Warn if user does has epel enabled
-        if (isset($clearos_epel))
-            $warnings[self::WARN_EPEL_ENABLE] = lang('software_repository_warn_epel_is_enabled');
+        // if (isset($clearos_epel))
+        //    $warnings[self::WARN_EPEL_ENABLE] = lang('software_repository_warn_epel_is_enabled');
 
         // Warn if user does not have verified centos and has centos disabled
         if (!isset($clearos_centos) && !isset($clearos_centos_verified))
