@@ -1,7 +1,7 @@
 
 Name: app-software-repository
 Epoch: 1
-Version: 2.3.20
+Version: 2.3.2
 Release: 1%{dist}
 Summary: Software Repository
 License: GPLv3
